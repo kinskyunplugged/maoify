@@ -37,33 +37,44 @@
         });
         return message;
       };
-
       function maoify() {
-        const input = document.querySelector("#normal-text").value;
+        const inputField = document.querySelector("#normal-text");
         const outputField = document.querySelector("#translated");
-        outputField.innerHTML = maoReplace(input);
+
+        outputField.value = maoReplace(inputField.value);
+
+        //hackily resize the boxes as more text is added
+        inputField.style.height = "auto";
+        inputField.style.height = outputField.scrollHeight + "px";
+
+        outputField.style.height = "auto";
+        outputField.style.height = outputField.scrollHeight + "px";
       }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Maoify</title>
   </head>
   <body>
-<div class="text-center m-5">
-    <h1>Maoify</h1>
-    <p>A Maoist Standard English translation utility.  </p>
+    <div class="text-center m-5">
+      <h1>Maoify</h1>
+      <p>A Maoist Standard English translation utility.</p>
     </div>
     <div class="container">
-      <div class="input-group-lg secondary center m-5">
+      <div class="input-group-lg center m-5">
         <textarea
           class="form-control"
           oninput="maoify()"
-          aria-label="With textarea"
           placeholder="Enter your text here"
           id="normal-text"
         ></textarea>
       </div>
       <div class="input-group-lg center m-5">
-        <textarea class="form-control" id="translated"readonly placeholder="Translated text" aria-label="With textarea"></textarea>
+        <textarea
+          class="form-control"
+          id="translated"
+          readonly
+          placeholder="Translated text"
+        ></textarea>
       </div>
     </div>
   </body>
